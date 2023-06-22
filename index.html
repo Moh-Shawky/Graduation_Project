@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/eed6778813.js" crossorigin="anonymous"></script>
+  <title>PBSP</title>
+</head>
+
+<body>
+  <div id="back_image"></div>
+  <div class="bar">
+    <button id="bar_name" onclick="home()" title="click to home">PBSP</button>
+    <button id="menu_3d" onclick="predicting_3d()" title="Predict 3D structure"><img src="images/protein.png"
+        style="width: 40px; height: 40px; "><span id="button-text">Predict 3D structure</span></button>
+    <!-- <label>Predict 3D structure</label> -->
+    <button id="menu_site" onclick="predicting_site()" title="predicting binding site"><img
+        src="images/machine-learning.png" style="width: 40px; height: 40px; "><span id="button-text2">predicting binding
+        site</span></button>
+    <!-- <button class="icon" onclick="lang()"><img src="images/arabic-language.png" alt="" style="width: 40px; height: 40px;"></button> -->
+    <button class="icon" onclick="theme()" title="change mode"><img id="sun" src="images/moon.png" alt=""
+        style="width: 40px; height: 40px; "></button>
+  </div>
+  <div id="title">
+    <h1 style="font-weight: bold;">PBSP</h1>
+    <h2 style="padding-bottom: 15px; text-align: left;">welcome to the most powerful and awesome Protein Binding Site
+      Prediction</h2>
+    <div id="loader">Loading...</div>
+    <button id="start_but" style="display: none;" onclick="chose()">GET IN</button>
+  </div>
+  <div id="chossing">
+
+    <h1 style="font-size: 40px;">I Want to ....</h1>
+    <button id="bindsite_but" onclick="predicting_site()">Predict Binding site Of Protein</button>
+    <br>
+    <button id="threed_but" onclick="predicting_3d()">Get 3D Structure Of A Sequence</button>
+
+
+  </div>
+  <button id="about" title="about us" onclick="about()"><img src="images/about.png" alt=""
+      style="width: 55px; height: 55px; "></button>
+
+  <div id="Predicting_page">
+    <form action="" method="get" id="pred_site_form">
+      <h2 class="predict_paragraph">
+        Upload 3D structure file of protein (.PDB , .MOL2) to let the model predicts its 
+        binding sites 
+        <!-- IF you have a pdb file of protein just upload it and wait untail model do its work
+        but if you haven't it click to( <a class="click_text" onclick="predicting_3d()">predict 3d structure</a>)
+        and upload protein sequence to get pdb of this protein sequence -->
+      </h2>
+      <!-- <h1>
+      first of all if you have arrived here this means that you have at least
+      basic knowledge of biology filed but let us tell you a little bit more
+      As we know Proteins are functional structures that made up of amino acid units.
+      Proteins are essential for the functions and growth of all living things.
+  </h1>
+  <h1>
+      But in the protein world there are also harmful proteins,
+      which we want to stop their functions by adding specific peptide inhibitors,
+      and adding activitors for effective proteins to do their function completely.
+  </h1> -->
+      <!-- <h1>
+      There are many ligands which can bind to proteins,
+      but the question is where exactly we should put our ligand.
+      In this step we can use PBSP (Protein Binding Site Prediction), as you can give it a protein, then it
+      can tell you where is the binding site exactly depending on an effective
+      machine learning model called ResUNet.
+    </h1> -->
+      <!-- <p>
+      it is a small and free tool to predict the binding site of a protein in a PDB file.
+      Binding site prediction is an important problem in computational biology.
+      The protein (target) of interest usually comes from structural studies
+      of which the coordinates are available in the Protein Data Bank (PDB) file.
+      The binding site prediction of a protein is an important problem for many
+      biological applications, such as drug discovery and structure-based design.
+      The problem is challenging because of the high dimensionality of the input
+      (the coordinates of millions of atoms) and the complex relationship between
+      the protein structure and its function. -->
+
+      <!-- In this work, we present a novel Bayesian approach for predicting protein binding
+      sites from PDB files. The method uses a prior knowledge-based model to capture 
+      our prior beliefs about what features are important for binding site prediction; 
+      it also makes use of discriminative machine learning to select relevant features 
+      from the PDB file and learn how they are related to one another in order to make 
+      predictions. -->
+      <!-- </p> -->
+      <div class="predict_buttons">
+        <label for="file-upload" class="custom-file-upload">
+          <i class="fa fa-cloud-upload"></i> Upload File
+        </label>
+        <input id="file-upload" type="file" name="protein_file" onchange="displayFileName()" required/>
+        <label id="file-name" class="file_name"></label>
+        <input type="submit" onclick="predicting_site()" value="Predict" class="custom-file-upload-predict">
+      </div>
+
+  </div>
+  </form>
+
+  <div id="pred_3d">
+    <form action="" method="get" id="pred_3d_form">
+      <label style="font-size: xx-large; margin-top: 20px; font-weight: bold;" for="seq_text">Enter protein
+        sequence:</label>
+      <textarea style="margin-top: 10px;" id="seq_text" name="protein_sequence" cols="150" rows="10" required></textarea>
+        <div class="upload_text_file">
+        <!-- <label for="file-upload2" class="custom-file-upload">
+          <i class="fa fa-cloud-upload"></i> Choose File
+        </label>
+        <input id="file-upload2" type="file" name="protein_sequence" onchange="displayFileName2()" /> -->
+        <input type="submit" onclick="predicting_3d()" value="Predict" class="custom-file-upload-predict">
+        <div><label id="text-file-name" class="file_name"></label></div>
+      </div> 
+  </div>
+  </form>
+
+  <div id="about-section">
+    <h1>About Us Page</h1>
+    <p>We are 5 developers trying to introduce product may help researchers in their job.</p>
+
+    <h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+      <div class="top">
+        <div class="column">
+          <div class="card">
+            <img class="profile" src="images/Youssef.jpg" alt="Youssef" style="width:100%">
+            <div class="container">
+              <h2>Youssef Nassar</h2>
+              <p class="title">FCAI Senior Student</p>
+              <p>Full Stack Developer (MERN).</p>
+              <a class="link" href="mailto:yousefnasar912333@gmail.com">Contact</a>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <img class="profile" src="images/shawky.jpg" alt="Shawky" style="width:100%">
+            <div class="container">
+              <h2>Mohamed Shawky</h2>
+              <p class="title">FCAI Senior Student</p>
+              <p>Backend developer (PHP-LARAVEL).</p>
+              <a class="link" href="mailto:mohamedshawky20m@email.com">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column col om">
+        <div class="card">
+          <img class="profile" src="images/Omnia.jpg" alt="Omnia" style="width:100%">
+          <div class="container">
+            <h2>Omnia Rewizk</h2>
+            <p class="title">FCAI Senior Student</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <a class="link" href="mailto:omnia25.rowezak@gmail.com">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="column col">
+        <div class="card">
+          <img class="profile" src="images/Aya.jpg" alt="Aya" style="width:100%">
+          <div class="container">
+            <h2>Aya Khaled</h2>
+            <p class="title">FCAI Senior Student</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <a class="link" href="mailto:ayakhalid191@gmail.com">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="column col">
+        <div class="card">
+          <img class="profile" src="images/Amira.jpg" alt="Amira" style="width:100%;">
+          <div class="container">
+            <h2>Amira Hamdy</h2>
+            <p class="title">FCAI Senior Student</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <a class="link" href="mailto:amirahh8742@gmail.com">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/js.js"></script>
+</body>
+
+</html>
